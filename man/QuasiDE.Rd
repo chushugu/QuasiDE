@@ -57,6 +57,8 @@ modnorm <- smooth.spline(meanest[varest != 0],log(varest[varest != 0]))
 
 ## Analyze the normalized data
 
+## Use a subset for testing
+air.norm <- air.norm[1:3000,]  
 dsgn <- model.matrix(~as.factor(trt))
 air.norm$QuasiDE.rawp <- QuasiDE(air.norm[,1:n],design1=dsgn,splmodel=modnorm)
 air.norm$QuasiDE.adjp <- p.adjust(air.norm$QuasiDE.rawp,method="BH")
